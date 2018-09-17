@@ -1,17 +1,23 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Support.UI;
+using System;
 using System.Configuration;
 
 namespace CambridgeUI.Tests
 {
-    public class Browsers
+    [TestFixture]
+    class BaseTest
     {
-        private static IWebDriver webDriver;
+        protected IWebDriver webDriver;
         private static string baseURL = ConfigurationManager.AppSettings["url"];
         private static string browser = ConfigurationManager.AppSettings["browser"];
+        protected WebDriverWait wait;
 
-        public static void Initialize()
+        [OneTimeSetUp]
+        public void BeforeTest()
         {
             switch (browser)
             {
@@ -25,15 +31,13 @@ namespace CambridgeUI.Tests
                     webDriver.Manage().Window.Maximize();
                     break;
             }
-            Goto(baseURL);
+            webDriver.Url = baseURL;
+            wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(10));
         }
-        public static void Goto(string url)
-        {
-            webDriver.Url = url;
-        }
-        public static void Close()
+        [OneTimeTearDown]
+        public void AftrTest()
         {
             webDriver.Quit();
-        }
+        }      
     }
 }
