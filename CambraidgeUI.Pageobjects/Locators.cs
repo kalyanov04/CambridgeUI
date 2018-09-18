@@ -14,6 +14,8 @@
 
     public class FooterPaths
     {
+        public const string ConnectButton = "//a[text()='Connect with us']";
         public const string SocialMediaLinks = "cam-social-media-icon";
+        public const string About
     }
 }

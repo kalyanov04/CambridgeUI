@@ -19,5 +19,10 @@ namespace CambraidgeUI.Pageobjects
         }
         [FindsBy(How = How.ClassName, Using = FooterPaths.SocialMediaLinks)]
         public IList<IWebElement> SocialMediaLinks { get; set; }
+
+        [FindsBy(How = How.XPath, Using = FooterPaths.ConnectButton)]
+        public IList<IWebElement> ConnectButton { get; set; }
+
+
     }
 }

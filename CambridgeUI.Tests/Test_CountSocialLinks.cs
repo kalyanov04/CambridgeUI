@@ -6,14 +6,14 @@ using OpenQA.Selenium.Support.UI;
 namespace CambridgeUI.Tests
 {
     [TestFixture]
-    class TC:BaseTest
+    class Test_CountSocialLinks:BaseTest
     {
         [Test]
         public void Test()
         {
             MainPage mainPageInstance = new MainPage(webDriver);
             wait.Until(Header.IsDisplayed);
-            mainPageInstance.FooterInstance.SocialMediaLinks[5].Click();
+            Assert.AreEqual(7, mainPageInstance.FooterInstance.SocialMediaLinks.Count);
         }
     }
 }
